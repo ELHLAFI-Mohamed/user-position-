@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	  <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqzyGQkZkpuCxA5wbtSC4GrZo_3HfPLdQ&callback=initMap"
+  type="text/javascript"></script>
+   
+   <style type="text/css">
+   	
+    #map{
+    	width: 600px;
+    	height: 600px;
+    	position: relative;
+top: 40px; left: 40px;
+
+    }
+
+
+   </style>
+   <style>
+body {
+  background-image: url('back.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+
+  <script type="text/javascript">
+  if (navigator.geolocation) {
+    var latitude = null;
+    var longitude = null;
+    navigator.geolocation.getCurrentPosition(function (position) {
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+
+        var coords = new google.maps.LatLng(latitude,longitude);
+
+        var mapOptions ={
+         panControl: true,
+         zoomControl: true,
+         mapTypeControl: true,
+         scaleControl: true,
+         streetViewControl: true,
+         overviewMapControl: true,
+         rotateControl: true,
+
+         zoom:9,
+
+         center: coords ,
+
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+
+       }
+
+       var map = new google.maps.Map(document.getElementById("map"),mapOptions);
+
+       var marker = new google.maps.Marker({map:map,position:coords});   
+   });  
+
+ } else {
+    alert("Geolocation API is not supported in your browser");
+ };
+  	
+    
+
+
+
+
+  </script>
+</head>
+<body>
+
+<div id ="map"></div>
+</body>
+</html>
